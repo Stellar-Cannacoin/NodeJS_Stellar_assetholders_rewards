@@ -1,4 +1,5 @@
-
+# Asset holder reward payout
+#### For the Stellar Network, built using the [stellar-sdk](https://github.com/stellar/js-stellar-sdk)
 
 This is a simple Node.js application that allows you to fetch the holders of a Stellar asset and initiate payouts to them. You can use this tool to reward the asset holders of your choice by modifying the configuration in the .env file.
 
