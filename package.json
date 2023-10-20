@@ -1,0 +1,16 @@
+{
+  "name": "stellar_airdrop_holders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stian W. Instebø",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "stellar-sdk": "^10.4.1"
+  }
+}
