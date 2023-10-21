@@ -7,21 +7,10 @@ const { verifyTrustline } = require("./libs/stellar");
 require('dotenv').config()
 
 /**
- * Setup out runtime functions and variables
- * 
- * TODO:
- *      - Setup up try/catch to catch errors
- *      - Run logic to trigger fetching of asset holders
+ * Start application
  */
 try {
     runtime(process.env.CODE, process.env.ISSUER)
-    // verifyTrustline('GCWC3TUIPQOHYX3ES5K6HVHWU3KTMYB5ZPJALWIZA33VUVBSDJG2HABM')
-    // .then(data => {
-    //     if (!data) {
-    //         return console.log("NOT FOUND")
-    //     }
-    //     return console.log("FOUND")
-    // })
 } catch (error) {
-    console.log('runtime error:', error)
+    console.log('Runtime error:', error)
 }

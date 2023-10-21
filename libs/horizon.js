@@ -51,19 +51,15 @@ const runtime = (code, issuer) => {
             let operations = await buildTransactionEnvelope(accounts)
 
             /**
-             * TODO:
-             *      - Loop entire Array[] (x)
-             *      - Return child Array of Array[]
-             *      - Submit child Array[] to the network
-             *      - Return status
+             * Create chunk sizes out of the array in or not to go over
+             * the transaction limit for the network.
              */
-
             for (let i = 0; i < operations.length; i += chunkSize) {
                 const chunk = operations.slice(i, i + chunkSize)
                 chunkArray.push(chunk)
             }
             /**
-             * Set our counter variable
+             * Set count variable
              */
             let counter = 1
 
@@ -77,7 +73,6 @@ const runtime = (code, issuer) => {
                  * Submit transaction to the network using custom helper function
                  */
                 await submitTransaction(block)
-
                 console.log("[StellarSDK]: Block #"+counter+" success")
 
                 /**
