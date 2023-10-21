@@ -1,5 +1,4 @@
-const { runtime } = require("./libs/horizon");
-const { verifyTrustline } = require("./libs/stellar");
+const { runtime } = require("./libs/horizon")
 
 /**
  * Setup .env file to fetch credentials used
