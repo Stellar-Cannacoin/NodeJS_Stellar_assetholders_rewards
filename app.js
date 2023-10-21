@@ -1,3 +1,11 @@
+/**
+ * Name: app.js
+ * Description: Application starting point
+ */
+
+/**
+ * Import runtime function
+ */
 const { runtime } = require("./libs/horizon")
 
 /**
