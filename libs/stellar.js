@@ -8,6 +8,9 @@
  */
 require('dotenv').config()
 
+/**
+ * Import the StellarSDK library
+ */
 const stellar = require('stellar-sdk')
 
 /**
