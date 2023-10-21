@@ -1,13 +1,10 @@
 const { runtime } = require("./libs/horizon");
+const { verifyTrustline } = require("./libs/stellar");
 
-
-// .then(data => {
-//     console.log(data)
-// })
-// .catch(error => {
-//     console.log('error:', error)
-// })
-
+/**
+ * Setup .env file to fetch credentials used
+ */
+require('dotenv').config()
 
 /**
  * Setup out runtime functions and variables
@@ -17,7 +14,14 @@ const { runtime } = require("./libs/horizon");
  *      - Run logic to trigger fetching of asset holders
  */
 try {
-    runtime('AlienheadZPK', 'GDGW7H5LVBHURQY6LXMQK2TW6SZLXIFVY6AH4Z63LE4P36VTGXASY4TE')
+    runtime(process.env.CODE, process.env.ISSUER)
+    // verifyTrustline('GCWC3TUIPQOHYX3ES5K6HVHWU3KTMYB5ZPJALWIZA33VUVBSDJG2HABM')
+    // .then(data => {
+    //     if (!data) {
+    //         return console.log("NOT FOUND")
+    //     }
+    //     return console.log("FOUND")
+    // })
 } catch (error) {
     console.log('runtime error:', error)
 }

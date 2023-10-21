@@ -4,7 +4,7 @@
  */
 
 const axios = require("axios")
-const { buildTransactionEnvelope } = require("./stellar")
+const { buildTransactionEnvelope, submitTransaction } = require("./stellar")
 
 /**
  * Define base URL for the network used
@@ -26,43 +26,58 @@ let returnArray = []
 const runtime = (code, issuer) => {
     return new Promise(async (resolve, reject) => {
         /**
+         * Set payment array chunk size (max 100 operations per transaction)
+         */
+        let chunkSize = 99
+
+        /**
+         * Array used to split up payment array into chunks from `chunkSize`
+         */
+        let chunkArray = []
+        /**
          * Run function to fetch asset holders
          */
         assetHolders(code, issuer, false).then(async accounts => {
             /**
-             * TODO:
-             *      - Enable calculation based on asset balance
-             *      - Build transaction envelope (build, max 100 transactions)
-             *      - Submit transaction to network
-             *      - Return status to the user
-             */
-            console.log('Assets holders (count):', accounts.length)
-
-            /**
-             * Make the code a bit easier to read, just simple variable
-             * setups
-             */
-            let amount = parseFloat(213).toFixed(7)
-            let memo = 'Memo goes here'
-
-            /**
              * Wait for our returned 2D Stellar Array[]
              */
-            let stellarArray = await buildTransactionEnvelope(code, issuer, accounts, amount, memo)
+            let operations = await buildTransactionEnvelope(accounts)
 
             /**
              * TODO:
-             *      - Loop entire Array[]
+             *      - Loop entire Array[] (x)
              *      - Return child Array of Array[]
              *      - Submit child Array[] to the network
              *      - Return status
              */
 
+            for (let i = 0; i < operations.length; i += chunkSize) {
+                const chunk = operations.slice(i, i + chunkSize)
+                chunkArray.push(chunk)
+            }
+            /**
+             * Set our counter variable
+             */
+            let counter = 1
 
             /**
-             * Return status from the network
+             * Iterate through the chunk array to fetch the transaction blocks
              */
-            return resolve('All done')
+            for (let block of chunkArray) {
+                console.log("[StellarSDK]: Processing block #"+counter+" with transactions:", block.length)
+
+                /**
+                 * Submit transaction to the network using custom helper function
+                 */
+                await submitTransaction(block)
+
+                console.log("[StellarSDK]: Block #"+counter+" success")
+
+                /**
+                 * Update counter (purely for logging purposes)
+                 */
+                counter++
+            }
         })
         .catch(error => {
             /**
@@ -70,6 +85,7 @@ const runtime = (code, issuer) => {
              * user
              */
             console.log(error)
+            console.log("Returned error: ", error.config.data.split('tx=')[1])
             return reject(error)
         })
     })
@@ -129,37 +145,6 @@ const assetHolders = (code, issuer, nextUrl) => {
         return returnArray
     })
 }
-
-/**
- * Verify is the Stellar account have established a trustline to the 
- * payout asset fetched from the .env file
- * @param { String } account Stellar account id
- * @returns 
- */
-const verifyTrustline = (account) => {
-    return new Promise(async (resolve, reject) => {
-
-    })
-}
-
-/**
- * Outdate / duplicate function, do not use
- * @param { String } code Asset code
- * @param { String } issuer Asset issuer
- * @returns Promise
- */
-// const runtime = (code, issuer) => {
-//     return new Promise(async (resolve, reject) => {
-//         try {
-//             console.log('Started running')
-//             await returnAssetHolders(code, issuer)
-//             console.log('Finished running')
-//         } catch (error) {
-//             console.log(error)
-//             return reject(error)
-//         }
-//     })
-// }
 
 /**
  * Export functions to make them availble to
