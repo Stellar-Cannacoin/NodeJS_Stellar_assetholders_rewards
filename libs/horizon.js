@@ -3,7 +3,14 @@
  * Description: Handle API requests to and from Stellar Horizon API
  */
 
+/**
+ * Import axios in order to make REST requests to Horizon
+ */
 const axios = require("axios")
+
+/**
+ * Import StellarSDK custom helper functions
+ */
 const { buildTransactionEnvelope, submitTransaction } = require("./stellar")
 
 /**
