@@ -31,16 +31,22 @@ CODE="YOUR_ASSET_CODE"
 ISSUER="YOUR_ASSET_ISSUER_PUBLIC_KEY"
 PAYOUT_CODE="PAYOUT_ASSET_CODE"
 PAYOUT_ISSUER="PAYOUT_ASSET_ISSUER"
+REWARD="PAYOUT_AMOUNT_PER_HOLDER"
+REWARD_MEMO="PAYOUT_MEMO"
 PUBLIC="YOUR_STELLAR_PUBLIC_KEY"
 SECRET="YOUR_STELLAR_SECRET_KEY"
+NETWORK="https://horizon.stellar.org/"
 ```
 
 - **CODE:** Replace with the code of the Stellar asset you want to distribute rewards for.
 - **ISSUER:** Replace with the public key of the asset issuer.
 - **PAYOUT_CODE:** Replace with the code of the Stellar asset you want to distribute rewards **in.**
 - **PAYOUT_ISSUER:** Replace with the public key of the asset issuer you want to distrubyte rewards **in.**
+- **REWARD** Replace with amount you want to reward each asset holder
+- **REWARD_MEMO** Replace with memo attached to payout
 - **PUBLIC:** Replace with your Stellar public key.
 - **SECRET:** Replace with your Stellar secret key.
+- **NETWORK** Keep as is, or switch over to [Soroban](https://horizon-futurenet.stellar.org) / [Horizon](https://developers.stellar.org/api/horizon) testnet
 
 Make sure you have the necessary Lumens (XLM) in the account associated with the PUBLIC and SECRET keys to cover transaction fees.
 
