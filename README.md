@@ -57,6 +57,12 @@ node app.js
 ```
 The application will fetch the asset holders and initiate payouts according to the configuration in the .env file.
 
+## Todo
+- [ ] Remove the usage of [Stellar.expert](https://stellar.expert) due to the blocking and rate limiting of IP's
+- [ ] Update the app to TypeScript
+- [ ] Include mock data
+- [ ] Create unit tests
+
 ## Contributing
 If you would like to contribute to this project or report issues, please open an issue or create a pull request on the GitHub repository.
 
