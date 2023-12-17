@@ -38,7 +38,7 @@ SECRET="YOUR_STELLAR_SECRET_KEY"
 NETWORK="https://horizon.stellar.org/"
 ```
 
-- **CODE:** Replace with the code of the Stellar asset you want to distribute rewards for.
+- **CODE:** Replace with the code of the Stellar asset you want to distribute rewards for. (fetch eligable airdrop wallets). One can setup to scan ex for holders of an NFT and then airdrop them a specific Stellar asset.
 - **ISSUER:** Replace with the public key of the asset issuer.
 - **PAYOUT_CODE:** Replace with the code of the Stellar asset you want to distribute rewards **in.**
 - **PAYOUT_ISSUER:** Replace with the public key of the asset issuer you want to distrubyte rewards **in.**
